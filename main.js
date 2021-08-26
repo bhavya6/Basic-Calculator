@@ -1,46 +1,46 @@
 let buttons = document.querySelectorAll(".button");
 
-function changeColor(x) {
-  x.style.background = "white";
-  x.style.color = "black";
+function changeColor(currOperation) {
+  currOperation.style.background = "white";
+  currOperation.style.color = "black";
   setTimeout(() => {
-    x.style.background = "black";
-    x.style.color = "turquoise";
+    currOperation.style.background = "black";
+    currOperation.style.color = "turquoise";
   }, 400);
 }
 
 //when some key is pressed
 window.addEventListener("keydown", (e) => {
-  let k = e.key;
+  let keyPressed = e.key;
 
-  if (k === "=" || k == "Enter") {
+  if (keyPressed === "=" || keyPressed == "Enter") {
     let equal = document.querySelector(`div[data-key="="]`);
     changeColor(equal);
-    let x = document.getElementById("display").innerHTML;
+    let currOperation = document.getElementById("display").innerHTML;
     try {
-      let z = eval(x);
-      document.getElementById("display").innerHTML = z.toFixed(2);
+      let result = eval(currOperation);
+      document.getElementById("display").innerHTML = result.toFixed(2);
     } catch (e) {
       alert("Wrong Input");
     }
-  } else if (k == "Backspace") {
-    let x = document.getElementById("display").innerHTML;
-    x = x.substring(0, x.length - 1);
-    document.getElementById("display").innerHTML = x;
+  } else if (keyPressed == "Backspace") {
+    let currOperation = document.getElementById("display").innerHTML;
+    currOperation = currOperation.substring(0, currOperation.length - 1);
+    document.getElementById("display").innerHTML = currOperation;
   } else if (
-    (k >= "0" && k <= "9") ||
-    k == "-" ||
-    k == "+" ||
-    k == "/" ||
-    k == "*" ||
-    k == "."
+    (keyPressed >= "0" && keyPressed <= "9") ||
+    keyPressed == "-" ||
+    keyPressed == "+" ||
+    keyPressed == "/" ||
+    keyPressed == "*" ||
+    keyPressed == "."
   ) {
-    let clicked = document.querySelector(`div[data-key="${k}"]`);
+    let clicked = document.querySelector(`div[data-key="${keyPressed}"]`);
     console.log(clicked);
     changeColor(clicked);
-    let x = document.getElementById("display").innerHTML;
-    x = x + k;
-    document.getElementById("display").innerHTML = x;
+    let currOperation = document.getElementById("display").innerHTML;
+    currOperation = currOperation + keyPressed;
+    document.getElementById("display").innerHTML = currOperation;
   }
 });
 
@@ -50,17 +50,17 @@ for (let i = 0; i < buttons.length; i++) {
     changeColor(buttons[i]);
     let y = buttons[i].innerHTML;
     if (y === "=") {
-      let x = document.getElementById("display").innerHTML;
+      let currOperation = document.getElementById("display").innerHTML;
       try {
-        let z = eval(x);
-        document.getElementById("display").innerHTML = z.toFixed(2);
+        let result = eval(currOperation);
+        document.getElementById("display").innerHTML = result.toFixed(2);
       } catch (e) {
         alert("Wrong Input");
       }
     } else {
-      let x = document.getElementById("display").innerHTML;
-      x = x + y;
-      document.getElementById("display").innerHTML = x;
+      let currOperation = document.getElementById("display").innerHTML;
+      currOperation = currOperation + y;
+      document.getElementById("display").innerHTML = currOperation;
     }
   });
 }
