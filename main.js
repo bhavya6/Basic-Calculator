@@ -9,7 +9,7 @@ function changeColor(currOperation) {
   }, 400);
 }
 
-//when some key is pressed
+//when buttons are pressed using keyboard
 window.addEventListener("keydown", (e) => {
   let keyPressed = e.key;
 
